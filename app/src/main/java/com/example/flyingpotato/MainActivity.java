@@ -2,9 +2,14 @@ package com.example.flyingpotato;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    Button play, leaderboard, shop, logout;
 
     public MainActivity(){
 
@@ -16,6 +21,37 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
     }
+
+    public void play(View view){
+        Intent intent = new Intent(this, PlayActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void profile(View view){
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void leaderboard(View view){
+        Intent intent = new Intent(this, LeaderBoardActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void shop(View view){
+        Intent intent = new Intent(this, ShopActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    public void logout(View view){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 
 }

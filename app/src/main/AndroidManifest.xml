@@ -9,7 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
+        <activity android:name=".ProfileActivity"></activity>
+        <activity android:name=".ShopActivity" />
+        <activity android:name=".LeaderBoardActivity" />
+        <activity android:name=".PlayActivity" />
+        <activity
+            android:name=".LoginActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -18,20 +23,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
+        <activity
+            android:name=".MainActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-
-        </activity>
-        <activity android:name=".InitialFragment"
-        android:configChanges="orientation"
-        android:screenOrientation="portrait"/>
-        <activity android:name=".LoginFragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".InitialFragment"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".SignUpFragment"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LoginFragment"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SignUpFragment"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
