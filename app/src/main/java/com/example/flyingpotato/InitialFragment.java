@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -15,7 +16,7 @@ public class InitialFragment extends Fragment {
 
     private View view;
 
-    private TextView login, signup, guest;
+    private Button login, signup, guest;
 
     public InitialFragment(){
 
@@ -60,7 +61,6 @@ public class InitialFragment extends Fragment {
 
         return view;
     }
-
 
     public void addFragment(Fragment fragment, boolean addToBackStack, String tag) {
         FragmentManager manager = getFragmentManager();
