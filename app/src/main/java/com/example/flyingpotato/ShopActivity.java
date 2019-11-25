@@ -21,4 +21,11 @@ public class ShopActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         finish();
     }
+
+    public void finish(View view){
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
 }

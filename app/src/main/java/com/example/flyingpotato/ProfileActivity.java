@@ -21,4 +21,11 @@ public class ProfileActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         finish();
     }
+
+    public void logout(View view){
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
 }
