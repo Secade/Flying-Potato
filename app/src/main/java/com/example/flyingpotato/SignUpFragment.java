@@ -1,5 +1,6 @@
 package com.example.flyingpotato;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,16 @@ public class SignUpFragment extends Fragment {
 
         signup = view.findViewById(R.id.signup);
         back = view.findViewById(R.id.back);
+
+        signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(0, 0);
+                getActivity().finish();
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override

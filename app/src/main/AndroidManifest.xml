@@ -9,10 +9,30 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ProfileActivity"></activity>
-        <activity android:name=".ShopActivity" />
-        <activity android:name=".LeaderBoardActivity" />
-        <activity android:name=".PlayActivity" />
+        <activity android:name=".PreGameActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity
+            android:name=".PostScreenActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ShopActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".LeaderBoardActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".PlayActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:configChanges="orientation"
