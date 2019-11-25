@@ -1,6 +1,7 @@
 package com.example.flyingpotato;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -11,12 +12,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpFragment extends Fragment {
 
@@ -26,7 +31,9 @@ public class SignUpFragment extends Fragment {
     private EditText username, password;
 
     private DatabaseReference register;
-
+    private String name;
+    private String passw;
+    private boolean state;
     public SignUpFragment(){
 
     }
@@ -53,11 +60,15 @@ public class SignUpFragment extends Fragment {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                addUser();
-                Intent intent = new Intent(getActivity(), MainActivity.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(0, 0);
-                getActivity().finish();
+                if(addUser()==false){
+                   //yes
+                }else{
+                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(0, 0);
+                    getActivity().finish();
+                }
+
 
 
         }
@@ -83,16 +94,60 @@ public class SignUpFragment extends Fragment {
         ft.replace(R.id.frame_container, fragment, tag);
         ft.commitAllowingStateLoss();
     }
-    public void addUser() {
-        String name = username.getText().toString().trim();
-        String passw = password.getText().toString().trim();
-        if(!TextUtils.isEmpty(name)) {
-            String id = register.push().getKey();
-            Users user = new Users(id, name, passw);
-            register.child(id).setValue(user);
-            Toast.makeText(getActivity(), "User signup success!", Toast.LENGTH_LONG).show();
-        }else
-            Toast.makeText(getActivity(),"Please fill all the blanks!", Toast.LENGTH_LONG).show();
+//    public Boolean addUser() {
+//        name = username.getText().toString().trim();
+//        passw = password.getText().toString().trim();
+//        if(!TextUtils.isEmpty(name) && checker()== true) {
+//            String id = register.push().getKey();
+//            Users user = new Users(id, name, passw);
+//            register.child(id).setValue(user);
+//            Toast.makeText(getActivity(), "User signup success!", Toast.LENGTH_LONG).show();
+//            return true;
+//        }
+//        if(checker()== false){
+//            name = "";
+//            passw = "";
+//            Toast.makeText(getActivity(),"Username already exists!", Toast.LENGTH_LONG).show();
+//            return false;
+//        }else
+//            Toast.makeText(getActivity(),"Please fill all the blanks!", Toast.LENGTH_LONG).show();
+//            return false;
+//    }
+    public boolean addUser(){ //still broken but working on it
+        name = username.getText().toString().trim();
+        passw = password.getText().toString().trim();
+        if(TextUtils.isEmpty(name) || TextUtils.isEmpty(passw)) {
+            Toast.makeText(getActivity(), "Please fill all the blanks!", Toast.LENGTH_LONG).show();
+            state = false;
+        }
+        else {
+            register.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.child("Users").child(name).exists()) {
+                        Toast.makeText(getActivity(), "Username already exists!", Toast.LENGTH_LONG).show();
+                        state = false;
+
+                    } else {
+
+                        String id = register.push().getKey();
+                        Users user = new Users(id, name, passw);
+                        register.child(id).setValue(user);
+                        Toast.makeText(getActivity(), "User signup success!", Toast.LENGTH_LONG).show();
+                        state = true;
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+        System.out.println(state);
+
+        return state;
     }
 
 }
