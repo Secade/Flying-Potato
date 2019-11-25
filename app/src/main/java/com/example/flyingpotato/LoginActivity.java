@@ -28,4 +28,6 @@ public class LoginActivity extends AppCompatActivity {
         ft.replace(R.id.frame_container, fragment, tag);
         ft.commitAllowingStateLoss();
     }
+
+
 }

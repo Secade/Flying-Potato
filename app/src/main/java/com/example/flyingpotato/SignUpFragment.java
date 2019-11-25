@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
@@ -14,7 +15,7 @@ public class SignUpFragment extends Fragment {
 
     private View view;
 
-    private TextView signup, back;
+    private Button signup, back;
 
     public SignUpFragment(){
 
