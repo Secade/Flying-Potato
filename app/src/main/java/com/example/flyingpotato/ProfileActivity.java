@@ -82,6 +82,11 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     public void logout(View view){
+        SharedPreferences.Editor editor = pref.edit();
+
+        editor.clear();
+        editor.commit();
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(0, 0);

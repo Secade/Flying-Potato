@@ -19,9 +19,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
 
-
-        addFragment(new InitialFragment(),false,"one");
-
         addFragment(new InitialFragment(), false, "one");
     }
 

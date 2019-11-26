@@ -23,6 +23,8 @@ public class HowToActivity extends AppCompatActivity {
         next = findViewById(R.id.next);
         background = findViewById(R.id.background);
 
+        numPictures=0;
+
         background.setBackgroundResource(R.drawable.back);
     }
 
@@ -47,7 +49,7 @@ public class HowToActivity extends AppCompatActivity {
                 break;
             case 4:
                 numPictures=0;
-                Intent intent = new Intent(this, PlayActivity.class);
+                Intent intent = new Intent(this, PreGameActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
                 finish();
