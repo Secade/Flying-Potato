@@ -119,6 +119,20 @@
                     android:textAlignment="center"
                     android:textColor="#2E7D32"
                     android:textSize="28dp" />
+
+                <Button
+                    android:id="@+id/how"
+                    android:layout_width="125dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/buttonbg"
+                    android:fontFamily="@font/lemon"
+                    android:onClick="how"
+                    android:text="How To Play"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="14dp" />
             </LinearLayout>
 
         </LinearLayout>

@@ -27,12 +27,14 @@ public class SignUpFragment extends Fragment {
 
     private View view;
 
+    private Users users;
+
     private Button signup, back;
     private EditText username, password;
 
     private DatabaseReference register;
-    private String name;
-    private String passw;
+//    private String name;
+//    private String passw;
     private boolean state;
     public SignUpFragment(){
 
@@ -114,27 +116,42 @@ public class SignUpFragment extends Fragment {
 //            return false;
 //    }
     public boolean addUser(){ //still broken but working on it
-        name = username.getText().toString().trim();
-        passw = password.getText().toString().trim();
+
+        final String name = username.getText().toString().trim();
+        final String passw = password.getText().toString().trim();
         if(TextUtils.isEmpty(name) || TextUtils.isEmpty(passw)) {
             Toast.makeText(getActivity(), "Please fill all the blanks!", Toast.LENGTH_LONG).show();
             state = false;
         }
         else {
+
             register.addListenerForSingleValueEvent(new ValueEventListener() {
+                int i =0;
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.child("Users").child(name).exists()) {
+                    System.out.println("IM HERE");
+
+                    for (DataSnapshot data: dataSnapshot.getChildren()) {
+                        users = data.getValue(Users.class);
+                        System.out.println(users.getName());
+                        if (users.getName().compareToIgnoreCase(name)==0){
+                            i++;
+                        }
+                    }
+                    if (i!=0) {
+                        System.out.println("WORKED");
                         Toast.makeText(getActivity(), "Username already exists!", Toast.LENGTH_LONG).show();
                         state = false;
-
-                    } else {
-
+                        i=0;
+                    } else{
+                        System.out.println("NOT WORKED");
                         String id = register.push().getKey();
                         Users user = new Users(id, name, passw);
                         register.child(id).setValue(user);
                         Toast.makeText(getActivity(), "User signup success!", Toast.LENGTH_LONG).show();
                         state = true;
+                        i=0;
+                        addFragment(new InitialFragment(),false,"two");
                     }
                 }
 
@@ -145,7 +162,7 @@ public class SignUpFragment extends Fragment {
             });
         }
 
-        System.out.println(state);
+        //System.out.println(state);
 
         return state;
     }

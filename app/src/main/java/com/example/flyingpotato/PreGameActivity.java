@@ -28,4 +28,11 @@ public class PreGameActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         finish();
     }
+
+    public void how(View view){
+        Intent intent = new Intent(this, HowToActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
 }

@@ -9,10 +9,11 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PreGameActivity"
+        <activity android:name=".HowToActivity"></activity>
+        <activity
+            android:name=".PreGameActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
-            ></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PostScreenActivity"
             android:configChanges="orientation"

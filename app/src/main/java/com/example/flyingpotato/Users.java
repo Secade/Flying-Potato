@@ -19,6 +19,10 @@ public class Users {
         cash = 0.0;
     }
 
+    public Users(){
+
+    }
+
     public String getName() {
         return name;
     }
