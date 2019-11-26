@@ -1,6 +1,8 @@
 package com.example.flyingpotato;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +30,8 @@ public class InitialFragment extends Fragment {
 
     private Button login, signup, guest;
 
+    private SharedPreferences pref;
+
     public InitialFragment(){
 
     }
@@ -47,6 +51,14 @@ public class InitialFragment extends Fragment {
         signup = view.findViewById(R.id.signup);
         guest = view.findViewById(R.id.guest);
 
+        //for insta login
+        pref = getActivity().getSharedPreferences("user_details", Context.MODE_PRIVATE);
+        if(pref.contains("username") && pref.contains("password")){
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().overridePendingTransition(0, 0);
+            getActivity().finish();
+        }
 
 
         login.setOnClickListener(new View.OnClickListener() {

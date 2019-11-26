@@ -3,6 +3,7 @@ package com.example.flyingpotato;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,8 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
     Button play, leaderboard, shop, logout;
+
+    private SharedPreferences shareMain;
 
     public MainActivity(){
 
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        shareMain = getSharedPreferences("user_details", MODE_PRIVATE);
 
     }
 
@@ -52,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logout(View view){
+
+        SharedPreferences.Editor editor = shareMain.edit();
+
+        editor.clear();
+        editor.commit();
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         overridePendingTransition(0, 0);
