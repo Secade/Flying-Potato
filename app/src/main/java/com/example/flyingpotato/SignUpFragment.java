@@ -59,6 +59,7 @@ public class SignUpFragment extends Fragment {
 
         username = view.findViewById(R.id.ETusername);
         password = view.findViewById(R.id.ETpassword);
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -70,8 +71,6 @@ public class SignUpFragment extends Fragment {
                     getActivity().overridePendingTransition(0, 0);
                     getActivity().finish();
                 }
-
-
 
         }
         });
@@ -96,26 +95,8 @@ public class SignUpFragment extends Fragment {
         ft.replace(R.id.frame_container, fragment, tag);
         ft.commitAllowingStateLoss();
     }
-//    public Boolean addUser() {
-//        name = username.getText().toString().trim();
-//        passw = password.getText().toString().trim();
-//        if(!TextUtils.isEmpty(name) && checker()== true) {
-//            String id = register.push().getKey();
-//            Users user = new Users(id, name, passw);
-//            register.child(id).setValue(user);
-//            Toast.makeText(getActivity(), "User signup success!", Toast.LENGTH_LONG).show();
-//            return true;
-//        }
-//        if(checker()== false){
-//            name = "";
-//            passw = "";
-//            Toast.makeText(getActivity(),"Username already exists!", Toast.LENGTH_LONG).show();
-//            return false;
-//        }else
-//            Toast.makeText(getActivity(),"Please fill all the blanks!", Toast.LENGTH_LONG).show();
-//            return false;
-//    }
-    public boolean addUser(){ //still broken but working on it
+
+    public boolean addUser(){
 
         final String name = username.getText().toString().trim();
         final String passw = password.getText().toString().trim();
@@ -124,7 +105,6 @@ public class SignUpFragment extends Fragment {
             state = false;
         }
         else {
-
             register.addListenerForSingleValueEvent(new ValueEventListener() {
                 int i =0;
                 @Override
@@ -161,8 +141,6 @@ public class SignUpFragment extends Fragment {
                 }
             });
         }
-
-        //System.out.println(state);
 
         return state;
     }
