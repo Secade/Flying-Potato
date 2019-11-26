@@ -42,6 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
+                android:gravity="center"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/buttonbg"
                 android:fontFamily="@font/lemon"
@@ -74,23 +75,23 @@
             android:layout_weight="4.5"
             android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:orientation="horizontal">-->
 
-                <Button
-                    android:id="@+id/level"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/buttonbg"
-                    android:fontFamily="@font/lemon"
-                    android:text="Highest Level"
-                    android:textSize="20dp" />
-            </LinearLayout>
+<!--                <Button-->
+<!--                    android:id="@+id/level"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginTop="10dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:background="@drawable/buttonbg"-->
+<!--                    android:fontFamily="@font/lemon"-->
+<!--                    android:text="Daily"-->
+<!--                    android:textSize="20dp" />-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,7 +107,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/buttonbg"
                     android:fontFamily="@font/lemon"
-                    android:text="Most Gold"
+                    android:text="All Time"
                     android:textSize="20dp" />
             </LinearLayout>
 
@@ -115,11 +116,13 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.5">
+            android:layout_weight="0.5"
+            android:fillViewport="true">
 
             <LinearLayout
+                android:id="@+id/thing"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical" />
         </ScrollView>
     </LinearLayout>
