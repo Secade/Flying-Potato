@@ -1,13 +1,15 @@
 package com.example.flyingpotato;
 
 public class Users {
-    String name;
-    String password;
-    String id;
-    int powerup1;
-    int powerup2;
-    int powerup3;
-    double cash;
+    private String name;
+    private String password;
+    private String id;
+    private int powerup1;
+    private int powerup2;
+    private int powerup3;
+    private double cash;
+    private int highscore;
+    private int highestLevel;
 
     public Users(String id,String name, String password) {
         this.id = id;
@@ -17,6 +19,8 @@ public class Users {
         powerup2 = 0;
         powerup3 =0;
         cash = 0.0;
+        highscore = 0;
+        highestLevel = 0;
     }
 
     public Users(){
@@ -69,5 +73,29 @@ public class Users {
 
     public void setCash(double cash) {
         this.cash = cash;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getHighscore() {
+        return highscore;
+    }
+
+    public void setHighscore(int highscore) {
+        this.highscore = highscore;
+    }
+
+    public int getHighestLevel() {
+        return highestLevel;
+    }
+
+    public void setHighestLevel(int highestLevel) {
+        this.highestLevel = highestLevel;
     }
 }

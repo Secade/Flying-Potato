@@ -22,6 +22,7 @@ public class LoginActivity extends AppCompatActivity {
 
         addFragment(new InitialFragment(),false,"one");
 
+        addFragment(new InitialFragment(), false, "one");
     }
 
     public void addFragment(Fragment fragment, boolean addToBackStack, String tag) {
