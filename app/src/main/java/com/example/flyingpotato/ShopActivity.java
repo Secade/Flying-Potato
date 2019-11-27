@@ -56,7 +56,7 @@ public class ShopActivity extends AppCompatActivity {
                 for(Users user: users){
                     if(user.getName().compareTo(pref.getString("username", "")) == 0){
                         System.out.println("GOTTEM GOLD");
-                        gold.setText(String.format("Current Gold: %.02f", user.getCash()));
+                        gold.setText(String.format("%.02f Gold", user.getCash()));
                     }
                 }
             }
