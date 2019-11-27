@@ -67,6 +67,7 @@
         android:weightSum="30">
 
         <LinearLayout
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="9"
@@ -119,7 +120,6 @@
                     android:text="Less Obstructions!"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:textAlignment="textStart"
                     android:textColor="#000000"
                     android:textSize="18dp" />
             </LinearLayout>
