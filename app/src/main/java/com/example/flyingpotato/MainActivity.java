@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button play, leaderboard, shop, logout;
+    Button play, leaderboard, shop, logout, profile;
 
     private SharedPreferences shareMain;
 
@@ -25,6 +26,17 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         shareMain = getSharedPreferences("user_details", MODE_PRIVATE);
+        shop = findViewById(R.id.shop);
+        profile = findViewById(R.id.profile);
+
+        if(!shareMain.contains("username")){
+            shop.setEnabled(false);
+//            shop.setVisibility(View.INVISIBLE);
+            shop.setAlpha(0.5f);
+            profile.setEnabled(false);
+//            profile.setVisibility(View.INVISIBLE);
+            profile.setAlpha(0.5f);
+        }
 
     }
 
