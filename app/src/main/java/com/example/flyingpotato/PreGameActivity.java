@@ -82,8 +82,7 @@ public class PreGameActivity extends AppCompatActivity {
                             list.add("Money Multiplier Potion x"+user.getGoldMulti());
                         if (user.getLessObs()>0)
                             list.add("Obstruction Potion x"+user.getLessObs());
-                        if (user.getLowSpeed()==0&&user.getGoldMulti()==0&&user.getLessObs()==0)
-                            list.add("No Power Ups!");
+                            list.add("No Power Up");
                         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, list);
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(dataAdapter);
@@ -99,6 +98,9 @@ public class PreGameActivity extends AppCompatActivity {
                                 }else if(adapterView.getItemAtPosition(i).toString().contains("Obstruction")){
                                     selectedPotion=3;
                                     Toast.makeText(getApplicationContext(), "Obstruction Potion Selected!", Toast.LENGTH_LONG).show();
+                                }else if(adapterView.getItemAtPosition(i).toString().contains("No Power")){
+                                    selectedPotion=0;
+                                    Toast.makeText(getApplicationContext(), "No Potion Selected!", Toast.LENGTH_LONG).show();
                                 }
                             }
 
