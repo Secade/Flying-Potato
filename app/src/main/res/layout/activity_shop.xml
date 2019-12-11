@@ -64,13 +64,12 @@
         android:layout_height="match_parent"
         android:layout_weight="0.5"
         android:orientation="vertical"
-        android:weightSum="30">
+        android:weightSum="32">
 
         <LinearLayout
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="9"
+            android:layout_weight="6"
             android:orientation="vertical">
 
             <TextView
@@ -87,9 +86,129 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="9"
-            android:weightSum="10"
-            android:paddingRight="10dp">
+            android:layout_weight="5"
+            android:orientation="horizontal"
+            android:paddingRight="10dp"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/garlic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poller_one"
+                    android:text="Slow Mo!"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/buySlow"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/buttonbg"
+                    android:fontFamily="@font/lemon"
+                    android:onClick="buySlow"
+                    android:text="BUY"
+                    android:textColor="#2E7D32"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="horizontal"
+            android:paddingRight="10dp"
+            android:weightSum="10">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/oil" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poller_one"
+                    android:text="Money Multiplier!"
+                    android:textAlignment="center"
+                    android:textColor="#000000"
+                    android:textSize="18dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/buyMulti"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/buttonbg"
+                    android:fontFamily="@font/lemon"
+                    android:onClick="buyMultiplier"
+                    android:text="BUY"
+                    android:textColor="#2E7D32"
+                    android:textSize="20dp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:paddingRight="10dp"
+            android:weightSum="10">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -116,10 +235,10 @@
                     android:id="@+id/textView12"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/poller_one"
-                    android:text="Less Obstructions!"
                     android:layout_gravity="center"
+                    android:fontFamily="@font/poller_one"
                     android:gravity="center"
+                    android:text="Less Obstructions!"
                     android:textColor="#000000"
                     android:textSize="18dp" />
             </LinearLayout>
@@ -132,11 +251,12 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/buyObs"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:background="@drawable/buttonbg"
                     android:fontFamily="@font/lemon"
+                    android:onClick="buyObstruction"
                     android:text="BUY"
                     android:textAlignment="center"
                     android:textColor="#2E7D32"
@@ -147,13 +267,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="9"
+            android:layout_weight="6"
             android:orientation="vertical"></LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_weight="5"
             android:weightSum="10">
 
             <LinearLayout
