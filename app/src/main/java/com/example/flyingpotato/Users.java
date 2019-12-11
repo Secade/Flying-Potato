@@ -4,9 +4,9 @@ public class Users {
     private String name;
     private String password;
     private String id;
-    private int powerup1;
-    private int powerup2;
-    private int powerup3;
+    private int goldMulti;
+    private int lowSpeed;
+    private int lessObs;
     private double cash;
     private int highscore;
     private int highestLevel;
@@ -15,9 +15,9 @@ public class Users {
         this.id = id;
         this.name = name;
         this.password = password;
-        powerup1 = 0;
-        powerup2 = 0;
-        powerup3 =0;
+        goldMulti = 0;
+        lowSpeed = 0;
+        lessObs =0;
         cash = 0.0;
         highscore = 0;
         highestLevel = 0;
@@ -41,30 +41,6 @@ public class Users {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getPowerup1() {
-        return powerup1;
-    }
-
-    public void setPowerup1(int powerup1) {
-        this.powerup1 = powerup1;
-    }
-
-    public int getPowerup2() {
-        return powerup2;
-    }
-
-    public void setPowerup2(int powerup2) {
-        this.powerup2 = powerup2;
-    }
-
-    public int getPowerup3() {
-        return powerup3;
-    }
-
-    public void setPowerup3(int powerup3) {
-        this.powerup3 = powerup3;
     }
 
     public double getCash() {
@@ -98,4 +74,29 @@ public class Users {
     public void setHighestLevel(int highestLevel) {
         this.highestLevel = highestLevel;
     }
+
+    public int getGoldMulti() {
+        return goldMulti;
+    }
+
+    public void setGoldMulti(int goldMulti) {
+        this.goldMulti = goldMulti;
+    }
+
+    public int getLowSpeed() {
+        return lowSpeed;
+    }
+
+    public void setLowSpeed(int lowSpeed) {
+        this.lowSpeed = lowSpeed;
+    }
+
+    public int getLessObs() {
+        return lessObs;
+    }
+
+    public void setLessObs(int lessObs) {
+        this.lessObs = lessObs;
+    }
+    
 }
