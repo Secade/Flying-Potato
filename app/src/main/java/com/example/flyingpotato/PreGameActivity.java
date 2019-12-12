@@ -79,20 +79,23 @@ public class PreGameActivity extends AppCompatActivity {
                 for(Users user: users){
                     if(user.getName().compareTo(pref.getString("username", "")) == 0){
                         List<String> list = new ArrayList<String>();
+                        list.add("No Power Up");
                         if (user.getLowSpeed()>0)
                             list.add("Slow Mo Potion x" + user.getLowSpeed());
                         if (user.getGoldMulti()>0)
                             list.add("Money Multiplier Potion x"+user.getGoldMulti());
                         if (user.getLessObs()>0)
                             list.add("Obstruction Potion x"+user.getLessObs());
-                            list.add("No Power Up");
                         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, list);
                         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         spinner.setAdapter(dataAdapter);
                         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                             @Override
                             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                                if (adapterView.getItemAtPosition(i).toString().contains("Slow Mo")){
+                                if(adapterView.getItemAtPosition(i).toString().contains("No Power")){
+                                    selectedPotion=0;
+                                    Toast.makeText(getApplicationContext(), "No Potion Selected!", Toast.LENGTH_LONG).show();
+                                }else if (adapterView.getItemAtPosition(i).toString().contains("Slow Mo")){
                                     selectedPotion=1;
                                     Toast.makeText(getApplicationContext(), "Slow Mo Potion Selected!", Toast.LENGTH_LONG).show();
                                 }else if(adapterView.getItemAtPosition(i).toString().contains("Money Multiplier")){
@@ -101,9 +104,6 @@ public class PreGameActivity extends AppCompatActivity {
                                 }else if(adapterView.getItemAtPosition(i).toString().contains("Obstruction")){
                                     selectedPotion=3;
                                     Toast.makeText(getApplicationContext(), "Obstruction Potion Selected!", Toast.LENGTH_LONG).show();
-                                }else if(adapterView.getItemAtPosition(i).toString().contains("No Power")){
-                                    selectedPotion=0;
-                                    Toast.makeText(getApplicationContext(), "No Potion Selected!", Toast.LENGTH_LONG).show();
                                 }
                             }
 
@@ -137,12 +137,10 @@ public class PreGameActivity extends AppCompatActivity {
         }else if(selectedPotion ==2){
             user.setGoldMulti(user.getGoldMulti()-1);
             database.child(user.getId()).setValue(user);
-
         }else if(selectedPotion==3){
             user.setLessObs(user.getLessObs()-1);
             database.child(user.getId()).setValue(user);
         }
-
 
         Intent intent = new Intent(this, PlayActivity.class);
         startActivity(intent);
