@@ -23,6 +23,18 @@ public class Users {
         highestLevel = 0;
     }
 
+    public Users(Users use){
+        this.id = use.getId();
+        this.name = use.getName();
+        this.password = use.getPassword();
+        goldMulti = use.getGoldMulti();
+        lowSpeed = use.getLowSpeed();
+        lessObs = use.getLessObs();
+        cash = use.getCash();
+        highscore = use.getHighscore();
+        highestLevel = use.getHighestLevel();
+    }
+
     public Users(){
 
     }
@@ -59,22 +71,6 @@ public class Users {
         this.id = id;
     }
 
-    public int getHighscore() {
-        return highscore;
-    }
-
-    public void setHighscore(int highscore) {
-        this.highscore = highscore;
-    }
-
-    public int getHighestLevel() {
-        return highestLevel;
-    }
-
-    public void setHighestLevel(int highestLevel) {
-        this.highestLevel = highestLevel;
-    }
-
     public int getGoldMulti() {
         return goldMulti;
     }
@@ -98,5 +94,20 @@ public class Users {
     public void setLessObs(int lessObs) {
         this.lessObs = lessObs;
     }
-    
+
+    public int getHighscore() {
+        return highscore;
+    }
+
+    public void setHighscore(int highscore) {
+        this.highscore = highscore;
+    }
+
+    public int getHighestLevel() {
+        return highestLevel;
+    }
+
+    public void setHighestLevel(int highestLevel) {
+        this.highestLevel = highestLevel;
+    }
 }

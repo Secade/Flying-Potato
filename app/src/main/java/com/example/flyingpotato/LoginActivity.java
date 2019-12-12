@@ -20,6 +20,8 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         addFragment(new InitialFragment(), false, "one");
+
+        addFragment(new InitialFragment(), false, "one");
     }
 
     public void addFragment(Fragment fragment, boolean addToBackStack, String tag) {

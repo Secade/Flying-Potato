@@ -76,7 +76,7 @@ public class ShopActivity extends AppCompatActivity {
                 if (user.getCash()>=10) {
                     user.setCash(user.getCash() - 10);
                     user.setLessObs(user.getLessObs() + 1);
-                    //add code to deduct from DB here
+                    database.child(user.getId()).setValue(user);
                     gold.setText(String.format("%.02f Gold", user.getCash()));
                     Toast.makeText(this, "Bought 1 Obstruction Potion for 10 Gold!", Toast.LENGTH_LONG).show();
                 }else{
@@ -92,7 +92,7 @@ public class ShopActivity extends AppCompatActivity {
                 if (user.getCash()>=15) {
                     user.setCash(user.getCash() - 15);
                     user.setGoldMulti(user.getGoldMulti() + 1);
-                    //add code to deduct from DB here
+                    database.child(user.getId()).setValue(user);
                     gold.setText(String.format("%.02f Gold", user.getCash()));
                     Toast.makeText(this, "Bought 1 Money Multiplier Potion for 15 Gold!", Toast.LENGTH_LONG).show();
                 }else{
@@ -108,7 +108,7 @@ public class ShopActivity extends AppCompatActivity {
                 if (user.getCash()>=20) {
                     user.setCash(user.getCash() - 20);
                     user.setLowSpeed(user.getLowSpeed() + 1);
-                    //add code to deduct from DB here
+                    database.child(user.getId()).setValue(user);
                     gold.setText(String.format("%.02f Gold", user.getCash()));
                     Toast.makeText(this, "Bought 1 Slow Mo Potion for 20 Gold!", Toast.LENGTH_LONG).show();
                 }else{

@@ -34,6 +34,7 @@ public class PreGameActivity extends AppCompatActivity {
     private Users user;
     private DatabaseReference database;
     private int selectedPotion;
+    private String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +59,13 @@ public class PreGameActivity extends AppCompatActivity {
             imageView.setBackgroundResource(R.drawable.logo);
             thingie.addView(imageView);
         }
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        key = database.push().getKey();
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
@@ -128,7 +131,18 @@ public class PreGameActivity extends AppCompatActivity {
     }
 
     public void play(View view){
-        //add database code which will reduce the number of potions based on selectedPotion int
+        if(selectedPotion == 1){
+            user.setLowSpeed(user.getLowSpeed()-1);
+            database.child(user.getId()).setValue(user);
+        }else if(selectedPotion ==2){
+            user.setGoldMulti(user.getGoldMulti()-1);
+            database.child(user.getId()).setValue(user);
+
+        }else if(selectedPotion==3){
+            user.setLessObs(user.getLessObs()-1);
+            database.child(user.getId()).setValue(user);
+        }
+
 
         Intent intent = new Intent(this, PlayActivity.class);
         startActivity(intent);
@@ -142,4 +156,6 @@ public class PreGameActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         finish();
     }
+
+
 }

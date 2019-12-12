@@ -72,6 +72,13 @@ public class LoginFragment extends Fragment {
 
         log = FirebaseDatabase.getInstance().getReference("Users");
 
+        pref = getActivity().getSharedPreferences("user_details", Context.MODE_PRIVATE);
+        if(pref.contains("username") && pref.contains("password")){
+            Intent intent = new Intent(getActivity(), MainActivity.class);
+            startActivity(intent);
+            getActivity().overridePendingTransition(0, 0);
+            getActivity().finish();
+        }
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
@@ -123,7 +130,9 @@ public class LoginFragment extends Fragment {
 
 
                             //SharedPref
+
                             pref = getActivity().getSharedPreferences("user_details", Context.MODE_PRIVATE);
+
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("username", name);
                             editor.putString("password", passw);
