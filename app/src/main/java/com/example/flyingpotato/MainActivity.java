@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button play, leaderboard, shop, logout, profile;
 
-    private SharedPreferences shareMain;
+    private SharedPreferences shareMain, pref2;
 
     public MainActivity(){
 
@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        AppConstants.initialization(this.getApplicationContext());
 
         shareMain = getSharedPreferences("user_details", MODE_PRIVATE);
         shop = findViewById(R.id.shop);
@@ -41,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void play(View view){
+        pref2 = getSharedPreferences("game_details", MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref2.edit();
+        editor.putInt("level", 0);
+        editor.commit();
+
         Intent intent = new Intent(this, PreGameActivity.class);
         startActivity(intent);
         overridePendingTransition(0, 0);

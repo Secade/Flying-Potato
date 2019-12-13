@@ -1,20 +1,32 @@
 package com.example.flyingpotato;
 
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 public class GameThread extends Thread {
 
     SurfaceHolder surfaceHolder; //Surfaceholder object reference
+    SurfaceView surfaceView;
     boolean isRunning; // Flag to detect whether the thread is running or not
     long startTime, loopTime; // Loop start time and loop duration
     long DELAY = 33; // Delay in milliseconds between screen refreshes
+    SharedPreferences pref2;
 
-    public GameThread(SurfaceHolder surfaceHolder){
+    int potato, xpotato;
+
+    public GameThread(SurfaceHolder surfaceHolder, SurfaceView surfaceView, int potato, int xpotato, SharedPreferences pref){
         this.surfaceHolder = surfaceHolder;
+        this.surfaceView = surfaceView;
         isRunning = true;
+        this.potato = potato;
+        this.xpotato = xpotato;
+        pref2 = pref;
     }
 
     @Override
@@ -28,9 +40,11 @@ public class GameThread extends Thread {
 
             if(canvas != null){
                 synchronized (surfaceHolder) {
-                    AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
-                    AppConstants.getGameEngine().updateAndDrawBird(canvas);
-                    AppConstants.getGameEngine().updateAndDrawTubes(canvas);
+//                    AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
+//                    AppConstants.getGameEngine().updateAndDrawBird(canvas);
+//                    AppConstants.getGameEngine().updateAndDrawTubes(canvas);
+                    drawBack(canvas);
+
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
@@ -56,6 +70,17 @@ public class GameThread extends Thread {
     // Sets the thread state, false = stopped, true = running
     public void setIsRunning(boolean state){
         isRunning = state;
+    }
+
+    public void drawBack(Canvas canvas){
+
+        Bitmap background = BitmapFactory.decodeResource(surfaceView.getResources(), R.drawable.back);
+        int newWidth = AppConstants.SCREEN_WIDTH;
+        int newHeight = AppConstants.SCREEN_HEIGHT;
+        Bitmap scaled = Bitmap.createScaledBitmap(background, newWidth, newHeight, true);
+
+        canvas.drawBitmap(scaled,0,0,null);
+
     }
 }
 

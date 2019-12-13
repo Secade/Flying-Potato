@@ -153,6 +153,11 @@ public class PreGameActivity extends AppCompatActivity {
             database.child(user.getId()).setValue(user);
         }
 
+        SharedPreferences.Editor editor = pref2.edit();
+        editor.putInt("power-up", spinner.getSelectedItemPosition());
+        editor.putInt("level", pref2.getInt("level", 0) + 1);
+        editor.commit();
+
         Intent intent = new Intent(this, PlayActivity.class);
         startActivity(intent);
         overridePendingTransition(0, 0);
