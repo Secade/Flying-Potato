@@ -9,7 +9,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:padding="5dp"
-        android:src="@drawable/ic_launcher" /><!--Make sure image is present in Drawable folder-->
+        android:src="@drawable/blank" /><!--Make sure image is present in Drawable folder-->
 
     <TextView
         android:id="@+id/textView"

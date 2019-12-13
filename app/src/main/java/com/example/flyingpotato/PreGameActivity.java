@@ -31,7 +31,7 @@ import java.util.List;
 
 public class PreGameActivity extends AppCompatActivity {
 
-    SharedPreferences pref;
+    SharedPreferences pref, pref2;
     LinearLayout thingie;
     Spinner spinner;
     private List<Users> users;
@@ -48,6 +48,7 @@ public class PreGameActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         pref = getSharedPreferences("user_details", MODE_PRIVATE);
+        pref2 = getSharedPreferences("game_details", MODE_PRIVATE);
         users = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance().getReference("Users");
@@ -156,6 +157,8 @@ public class PreGameActivity extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(0, 0);
         finish();
+
+
     }
 
     public void how(View view){
