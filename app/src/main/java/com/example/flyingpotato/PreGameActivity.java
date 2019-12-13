@@ -4,16 +4,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -51,6 +55,12 @@ public class PreGameActivity extends AppCompatActivity {
         thingie = findViewById(R.id.thingie);
         pref = getSharedPreferences("user_details", MODE_PRIVATE);
         spinner = findViewById(R.id.spinner);
+
+        String[] names ={"None","Slow Mo!","Money Multiplier!","Less Obstructions!"};
+        int icons[] = {R.drawable.blank, R.drawable.garlic, R.drawable.oil, R.drawable.potion};
+
+        CustomAdapter customAdapter=new CustomAdapter(getApplicationContext(),icons,names);
+        spinner.setAdapter(customAdapter);
 
         if(!pref.contains("username")){
             thingie.removeAllViews();
@@ -131,7 +141,7 @@ public class PreGameActivity extends AppCompatActivity {
     }
 
     public void play(View view){
-        if(selectedPotion == 1){
+        if(spinner.getSelectedItemPosition() == 1){
             user.setLowSpeed(user.getLowSpeed()-1);
             database.child(user.getId()).setValue(user);
         }else if(selectedPotion ==2){
@@ -156,4 +166,43 @@ public class PreGameActivity extends AppCompatActivity {
     }
 
 
+}
+
+class CustomAdapter extends BaseAdapter {
+    Context context;
+    int flags[];
+    String[] countryNames;
+    LayoutInflater inflter;
+
+    public CustomAdapter(Context applicationContext, int[] flags, String[] countryNames) {
+        this.context = applicationContext;
+        this.flags = flags;
+        this.countryNames = countryNames;
+        inflter = (LayoutInflater.from(applicationContext));
+    }
+
+    @Override
+    public int getCount() {
+        return flags.length;
+    }
+
+    @Override
+    public Object getItem(int i) {
+        return null;
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+    @Override
+    public View getView(int i, View view, ViewGroup viewGroup) {
+        view = inflter.inflate(R.layout.custom_spinner_items, null);
+        ImageView icon = (ImageView) view.findViewById(R.id.imageView);
+        TextView names = (TextView) view.findViewById(R.id.textView);
+        icon.setImageResource(flags[i]);
+        names.setText(countryNames[i]);
+        return view;
+    }
 }
