@@ -154,7 +154,7 @@ public class PreGameActivity extends AppCompatActivity {
         }
 
         SharedPreferences.Editor editor = pref2.edit();
-        editor.putInt("power-up", spinner.getSelectedItemPosition());
+        editor.putInt("powerup", spinner.getSelectedItemPosition());
         editor.putInt("level", pref2.getInt("level", 0) + 1);
         editor.commit();
 

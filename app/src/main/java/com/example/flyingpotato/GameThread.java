@@ -4,10 +4,16 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class GameThread extends Thread {
 
@@ -18,7 +24,8 @@ public class GameThread extends Thread {
     long DELAY = 33; // Delay in milliseconds between screen refreshes
     SharedPreferences pref2;
 
-    int potato, xpotato;
+    int potato, xpotato, powerup;
+    ArrayList<Flying> list;
 
     public GameThread(SurfaceHolder surfaceHolder, SurfaceView surfaceView, int potato, int xpotato, SharedPreferences pref){
         this.surfaceHolder = surfaceHolder;
@@ -27,11 +34,44 @@ public class GameThread extends Thread {
         this.potato = potato;
         this.xpotato = xpotato;
         pref2 = pref;
+
+        powerup = pref2.getInt("powerup", 0);
+        boolean flag = false;
+        if(powerup == 1)
+            flag = true;
+
+        Random r = new Random();
+        list = new ArrayList<>();
+
+        while(list.size() != this.potato){
+            Flying f  = new Flying(r.nextInt(AppConstants.SCREEN_WIDTH / 10 * 9), r.nextInt(AppConstants.SCREEN_WIDTH / 10 * 9),
+                    r.nextInt(4500), flag, true);
+            if(!list.contains(f))
+                list.add(f);
+        }
+
+        if(powerup != 3){
+//            ArrayList list2 = new ArrayList();
+            while(list.size() != this.xpotato + this.potato){
+                Flying f  = new Flying(r.nextInt(AppConstants.SCREEN_WIDTH / 10 * 9), r.nextInt(AppConstants.SCREEN_WIDTH / 10 * 9),
+                        r.nextInt(4500), flag, false);
+                if(!list.contains(f))
+                    list.add(f);
+            }
+//            list.addAll(list2);
+        }
     }
 
     @Override
     public void run() {
         // Looping until the boolean is false
+        Timer t = new Timer();
+        TimerTask tt = new TimerTask() {
+            @Override
+            public void run() {
+
+            }
+        }
         while(isRunning){
             startTime = SystemClock.uptimeMillis();
 
@@ -44,6 +84,9 @@ public class GameThread extends Thread {
 //                    AppConstants.getGameEngine().updateAndDrawBird(canvas);
 //                    AppConstants.getGameEngine().updateAndDrawTubes(canvas);
                     drawBack(canvas);
+
+                    for(Flying f: list)
+                        drawPotato(canvas, f, SystemClock.uptimeMillis() - startTime);
 
                     surfaceHolder.unlockCanvasAndPost(canvas);
                 }
@@ -80,6 +123,32 @@ public class GameThread extends Thread {
         Bitmap scaled = Bitmap.createScaledBitmap(background, newWidth, newHeight, true);
 
         canvas.drawBitmap(scaled,0,0,null);
+
+    }
+
+    public void drawPotato(Canvas canvas, Flying f, long time){
+
+        if(time < f.getTime()) {
+
+            Bitmap thing;
+
+            if (f.isPotato)
+                thing = BitmapFactory.decodeResource(surfaceView.getResources(), R.drawable.logo);
+            else
+                thing = BitmapFactory.decodeResource(surfaceView.getResources(), R.drawable.xpotato);
+            int newWidth = AppConstants.SCREEN_WIDTH / 10;
+            int newHeight = AppConstants.SCREEN_WIDTH / 10;
+            Bitmap scaled = Bitmap.createScaledBitmap(thing, newWidth, newHeight, true);
+
+            Matrix matrix = new Matrix();
+            float angle = (float)Math.toDegrees(Math.atan2(f.getFinalX()-f.getInitX(), -f.getCurrY()));
+            matrix.postRotate(angle);
+
+            f.setInitX(f.getInitX() + (f.getFinalX() - f.getInitX())/5);
+            f.setCurrY(f.getCurrY() - f.getVelocity());
+
+            Bitmap.createBitmap(scaled, f.getInitX(), f.setCurrY(), newWidth, newHeight, matrix, true);
+        }
 
     }
 }
