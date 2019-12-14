@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -25,7 +26,7 @@ public class PostScreenActivity extends AppCompatActivity {
     LinearLayout thingo;
     Users user, currUser;
     ArrayList<Users> users;
-    private DatabaseReference database;
+    DatabaseReference database;
 
     SharedPreferences pref, pref2;
 
@@ -51,28 +52,9 @@ public class PostScreenActivity extends AppCompatActivity {
         pref = getSharedPreferences("user_details", MODE_PRIVATE);
         pref2 = getSharedPreferences("game_details", MODE_PRIVATE);
 
-        score.setText(pref2.getInt("level", 0));
+        score.setText(pref2.getInt("level", 0)+"");
 
-        database.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot data: dataSnapshot.getChildren()) {
-                    user = data.getValue(Users.class);
-                    users.add(user);
-                }
-                for(Users user: users){
-                    if(user.getName().compareTo(pref.getString("username", "")) == 0){
-                       currUser = user;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+        database = FirebaseDatabase.getInstance().getReference("Users");
 
         if(!result){
             thingo.removeView(play);
@@ -90,15 +72,39 @@ public class PostScreenActivity extends AppCompatActivity {
                 gold.setText("You Earned 50 Gold!");
                 currUser.setCash(currUser.getCash()+50);
                 database.child(currUser.getId()).setValue(currUser);
-                //add gold to user
             }
 
-            //if score > highest score, then replace high score
             if(Integer.parseInt(score.getText().toString().trim()) > currUser.getHighscore()){
                 currUser.setHighscore(Integer.parseInt(score.getText().toString().trim()));
                 database.child(currUser.getId()).setValue(currUser);
             }
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        database.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot data: dataSnapshot.getChildren()) {
+                    user = data.getValue(Users.class);
+                    users.add(user);
+                }
+                for(Users user: users){
+                    if(user.getName().compareTo(pref.getString("username", "")) == 0){
+                        System.out.println("FOUND USER");
+                        currUser = new Users(user);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     public void playagain(View view){
