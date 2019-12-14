@@ -36,5 +36,11 @@ public class PlayActivity extends AppCompatActivity {
         finish();
     }
 
+    public void guessNumber(View view){
+        Intent intent = new Intent(this, AnswerActivity.class);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+        finish();
+    }
 
 }
