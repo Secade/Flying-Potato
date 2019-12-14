@@ -56,6 +56,8 @@ public class PostScreenActivity extends AppCompatActivity {
                 gold.setText("You Earned 50 Gold!");
                 //add gold to user
             }
+
+            //if score > highest score, then replace high score
         }
     }
 
