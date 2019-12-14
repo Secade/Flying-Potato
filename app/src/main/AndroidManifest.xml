@@ -9,7 +9,9 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Launch"
+        <activity android:name=".AnswerActivity"></activity>
+        <activity
+            android:name=".Launch"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -18,9 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HowToActivity"
+        <activity
+            android:name=".HowToActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PreGameActivity"
             android:configChanges="orientation"
@@ -48,8 +51,7 @@
         <activity
             android:name=".LoginActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation"
