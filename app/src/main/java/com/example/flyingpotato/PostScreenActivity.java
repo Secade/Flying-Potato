@@ -93,6 +93,7 @@ public class PostScreenActivity extends AppCompatActivity {
                     users.add(user);
                 }
                 for(Users user: users){
+
                     if(user.getName().compareTo(pref.getString("username", "")) == 0){
                         System.out.println("FOUND USER");
                         currUser = new Users(user);
