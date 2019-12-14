@@ -52,11 +52,6 @@ public class LoginFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //sharedPref
-
-        //if may naka log in na
-
-
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -117,19 +112,14 @@ public class LoginFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot data: dataSnapshot.getChildren()) {
                     user = data.getValue(Users.class);
-                    //System.out.println(user.getName());
                     users.add(user);
                 }
                 for(int i =0; i < users.size();i++){
                     if(users.get(i).getName().equals(name)){
                         if(users.get(i).getPassword().equals(passw)){
-                            //user = users.get(i);
                             System.out.println("HELLO");
                             Toast.makeText(getActivity(), "Login Successfully", Toast.LENGTH_LONG).show();
                             i = users.size()-1;
-
-
-                            //SharedPref
 
                             pref = getActivity().getSharedPreferences("user_details", Context.MODE_PRIVATE);
 
@@ -144,7 +134,6 @@ public class LoginFragment extends Fragment {
                             getActivity().finish();
 
                         }else{
-                          //  System.out.println("bbbbbbbbbbb");
                             Toast.makeText(getActivity(), "Password is incorrect", Toast.LENGTH_LONG).show();
                             i = users.size()-1;
                         }

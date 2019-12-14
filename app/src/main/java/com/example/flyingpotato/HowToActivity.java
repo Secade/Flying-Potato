@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class HowToActivity extends AppCompatActivity {
 
     LinearLayout background;
+    TextView step;
     int numPictures =0;
     Button next;
 
@@ -22,32 +24,47 @@ public class HowToActivity extends AppCompatActivity {
 
         next = findViewById(R.id.next);
         background = findViewById(R.id.background);
+        step = findViewById(R.id.step);
 
         numPictures=0;
 
-        background.setBackgroundResource(R.drawable.back);
+        background.setBackgroundResource(R.drawable.step1);
     }
 
     public void next(View view){
         switch (numPictures){
             case 0:
-                background.setBackgroundResource(R.drawable.back);
+                background.setBackgroundResource(R.drawable.step1);
+                step.setText("STEP 1:");
                 numPictures++;
                 break;
             case 1:
-                background.setBackgroundResource(R.drawable.buttonbg);
+                background.setBackgroundResource(R.drawable.step2);
+                step.setText("STEP 2:");
                 numPictures++;
                 break;
             case 2:
-                background.setBackgroundResource(R.drawable.logo);
+                background.setBackgroundResource(R.drawable.step3);
+                step.setText("STEP 3:");
                 numPictures++;
                 break;
             case 3:
-                background.setBackgroundResource(R.drawable.logout);
-                next.setText("FINISH");
+                background.setBackgroundResource(R.drawable.step4);
+                step.setText("STEP 4:");
                 numPictures++;
                 break;
             case 4:
+                background.setBackgroundResource(R.drawable.step5);
+                step.setText("STEP 5:");
+                numPictures++;
+                break;
+            case 5:
+                background.setBackgroundResource(R.drawable.step6);
+                step.setText("STEP 6:");
+                next.setText("FINISH");
+                numPictures++;
+                break;
+            case 6:
                 numPictures=0;
                 Intent intent = new Intent(this, PreGameActivity.class);
                 startActivity(intent);

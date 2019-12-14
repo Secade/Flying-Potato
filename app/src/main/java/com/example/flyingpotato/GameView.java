@@ -12,14 +12,12 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     GameThread gameThread;
     int potato, xpotato, powerup;
-//    SharedPreferences pref;
 
     public GameView(Context context, int powerup) {
         super(context);
         Random r = new Random();
         potato = r.nextInt(5) + 1;
         xpotato = r.nextInt(5) + 1;
-//        this.pref = pref;
         this.powerup = powerup;
         initView();
     }
@@ -59,20 +57,4 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         setFocusable(true);
         gameThread = new GameThread(holder, this, potato, xpotato, powerup);
     }
-
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event) {
-//        int action = event.getAction();
-//        // Tap is detected
-//        if(action == MotionEvent.ACTION_DOWN){
-//            if(AppConstants.getGameEngine().gameState == 0){
-//                AppConstants.getGameEngine().gameState = 1;
-////                AppConstants.getSoundBank().playSwoosh();
-//            }else{
-////                AppConstants.getSoundBank().playWing();
-//            }
-////            AppConstants.getGameEngine().bird.setVelocity(AppConstants.VELOCITY_WHEN_JUMPED);
-//        }
-//        return true;
-//    }
 }

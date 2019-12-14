@@ -7,8 +7,7 @@ import android.view.WindowManager;
 
 public class AppConstants {
 
-    static BitmapBank bitmapBank; // Bitmap object reference
-    static GameEngine gameEngine; // GameEngine object reference
+    static BitmapBank bitmapBank;
     static int SCREEN_WIDTH, SCREEN_HEIGHT;
     static int gravity;
     static int VELOCITY_WHEN_JUMPED;
@@ -18,7 +17,6 @@ public class AppConstants {
     static int minTubeOffsetY;
     static int maxTubeOffsetY;
     static int distanceBetweenTubes;
-//    static SoundBank soundBank;
     static Context gameActivityContext;
     static int randomOffset;
     static int TEXT_SIZE;
@@ -27,13 +25,7 @@ public class AppConstants {
         setScreenSize(context);
         bitmapBank = new BitmapBank(context.getResources());
         setGameConstants();
-        gameEngine = new GameEngine();
-//        soundBank = new SoundBank(context);
     }
-
-//    public static SoundBank getSoundBank(){
-//        return soundBank;
-//    }
 
     public static void setGameConstants(){
         AppConstants.numberOfTubes = 2;
@@ -46,16 +38,6 @@ public class AppConstants {
         AppConstants.distanceBetweenTubes = AppConstants.SCREEN_WIDTH * 3 / 4;
         AppConstants.TEXT_SIZE = (int)Math.ceil(AppConstants.gapBetweenTopAndBottomTubes * .1672); //100
         AppConstants.randomOffset = 239;
-    }
-
-    // Return BitmapBank instance
-    public static BitmapBank getBitmapBank(){
-        return bitmapBank;
-    }
-
-    // Return GameEngine instance
-    public static GameEngine getGameEngine(){
-        return gameEngine;
     }
 
     private static void setScreenSize(Context context){

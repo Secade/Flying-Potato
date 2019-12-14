@@ -59,13 +59,11 @@ public class PostScreenActivity extends AppCompatActivity {
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                System.out.println("BOI");
                 for (DataSnapshot data: dataSnapshot.getChildren()) {
                     user = data.getValue(Users.class);
                     users.add(user);
                 }
                 for(Users user: users){
-
                     if(user.getName().compareTo(pref.getString("username", "")) == 0){
                         System.out.println("FOUND USER");
                         currUser = new Users(user);
@@ -95,7 +93,6 @@ public class PostScreenActivity extends AppCompatActivity {
                         database.child(currUser.getId()).setValue(currUser);
                     }
                 }
-
             }
 
             @Override
@@ -103,15 +100,6 @@ public class PostScreenActivity extends AppCompatActivity {
 
             }
         });
-
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
     }
 
     public void playagain(View view){

@@ -55,12 +55,10 @@ public class ProfileActivity extends AppCompatActivity {
 
                 for (DataSnapshot data: dataSnapshot.getChildren()) {
                     Users user = data.getValue(Users.class);
-                    //System.out.println(user.getName());
                     users.add(user);
                 }
                 for(Users user: users){
                     if(user.getName().compareTo(pref.getString("username", "")) == 0){
-                        System.out.println("kjhfskrghkje");
                         gold.setText(String.format("%.02f", user.getCash()));
                         level.setText(user.getHighscore() +"");
                     }

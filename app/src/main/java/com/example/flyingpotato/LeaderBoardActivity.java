@@ -33,8 +33,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
     private LinearLayout linlay;
 
-//    private boolean daily;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +43,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
         users = new ArrayList<>();
 
         linlay = findViewById(R.id.thing);
-//        daily = true;
     }
 
     @Override
@@ -95,17 +92,14 @@ public class LeaderBoardActivity extends AppCompatActivity {
             Collections.sort(users, new Comparator<Users>() {
 
                 public int compare(Users o1, Users o2) {
-                    // compare two instance of `Score` and return `int` as result.
                     return o2.getHighscore() - o1.getHighscore();
                 }
             });
-//            Collections.reverse(users);
             for(Users user : users){
                 Typeface typeface = ResourcesCompat.getFont(this, R.font.lemon);
                 LinearLayout innerLayout = new LinearLayout(this);
                 innerLayout.setLayoutParams(new ViewGroup.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,200
-//                        ViewGroup.LayoutParams.WRAP_CONTENT
                 ));
                 innerLayout.setOrientation(LinearLayout.HORIZONTAL);
                 innerLayout.setWeightSum(2);

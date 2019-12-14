@@ -9,7 +9,6 @@ public class Users {
     private int lessObs;
     private double cash;
     private int highscore;
-    private int highestLevel;
 
     public Users(String id,String name, String password) {
         this.id = id;
@@ -20,7 +19,6 @@ public class Users {
         lessObs =0;
         cash = 0.0;
         highscore = 0;
-        highestLevel = 0;
     }
 
     public Users(Users use){
@@ -32,7 +30,6 @@ public class Users {
         this.lessObs = use.getLessObs();
         this.cash = use.getCash();
         this.highscore = use.getHighscore();
-        this.highestLevel = use.getHighestLevel();
     }
 
     public Users(){
@@ -101,13 +98,5 @@ public class Users {
 
     public void setHighscore(int highscore) {
         this.highscore = highscore;
-    }
-
-    public int getHighestLevel() {
-        return highestLevel;
-    }
-
-    public void setHighestLevel(int highestLevel) {
-        this.highestLevel = highestLevel;
     }
 }

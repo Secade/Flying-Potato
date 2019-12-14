@@ -17,12 +17,17 @@
 
         <Button
             android:id="@+id/button7"
-            android:layout_width="50dp"
+            android:layout_width="70dp"
             android:layout_height="50dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/previous"
-            android:onClick="back" />
+            android:background="@drawable/buttonbg"
+            android:fontFamily="@font/lemon"
+            android:onClick="back"
+            android:text="Quit"
+            android:textColor="#000000"
+            android:textSize="18dp"
+            tools:text="Quit" />
     </LinearLayout>
 
     <LinearLayout
@@ -89,6 +94,7 @@
                             android:id="@+id/spinner"
                             android:layout_width="wrap_content"
                             android:layout_height="60dp"
+                            android:layout_gravity="center"
                             android:background="@drawable/buttonbg" />
                     </LinearLayout>
 

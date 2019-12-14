@@ -172,8 +172,6 @@ public class PreGameActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         finish();
     }
-
-
 }
 
 class CustomAdapter extends BaseAdapter {

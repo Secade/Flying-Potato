@@ -21,7 +21,6 @@ public class PlayActivity extends AppCompatActivity {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        setContentView(R.layout.activity_play);
         getSupportActionBar().hide();
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         pref2 = getSharedPreferences("game_details", MODE_PRIVATE);
@@ -44,5 +43,4 @@ public class PlayActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         finish();
     }
-
 }

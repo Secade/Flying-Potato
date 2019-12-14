@@ -132,7 +132,7 @@
                 android:background="@drawable/buttonbg"
                 android:fontFamily="@font/lemon"
                 android:onClick="menu"
-                android:text="MENU"
+                android:text="QUIT"
                 android:textColor="#2E7D32"
                 android:textSize="20dp" />
         </LinearLayout>

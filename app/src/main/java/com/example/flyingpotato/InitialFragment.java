@@ -51,7 +51,6 @@ public class InitialFragment extends Fragment {
         signup = view.findViewById(R.id.signup);
         guest = view.findViewById(R.id.guest);
 
-        //for insta login
         pref = getActivity().getSharedPreferences("user_details", Context.MODE_PRIVATE);
         if(pref.contains("username") && pref.contains("password")){
             Intent intent = new Intent(getActivity(), MainActivity.class);

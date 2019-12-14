@@ -33,10 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
         if(!shareMain.contains("username")){
             shop.setEnabled(false);
-//            shop.setVisibility(View.INVISIBLE);
             shop.setAlpha(0.5f);
             profile.setEnabled(false);
-//            profile.setVisibility(View.INVISIBLE);
             profile.setAlpha(0.5f);
         }
 
@@ -87,7 +85,4 @@ public class MainActivity extends AppCompatActivity {
         overridePendingTransition(0, 0);
         finish();
     }
-
-
-
 }

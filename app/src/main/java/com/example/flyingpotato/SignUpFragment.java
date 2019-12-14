@@ -33,8 +33,6 @@ public class SignUpFragment extends Fragment {
     private EditText username, password;
 
     private DatabaseReference register;
-//    private String name;
-//    private String passw;
     private boolean state;
     public SignUpFragment(){
 

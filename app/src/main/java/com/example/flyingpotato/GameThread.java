@@ -20,11 +20,11 @@ import java.util.TimerTask;
 
 public class GameThread extends Thread {
 
-    SurfaceHolder surfaceHolder; //Surfaceholder object reference
+    SurfaceHolder surfaceHolder;
     SurfaceView surfaceView;
-    boolean isRunning; // Flag to detect whether the thread is running or not
-    long startTime, loopTime; // Loop start time and loop duration
-    long DELAY = 33; // Delay in milliseconds between screen refreshes
+    boolean isRunning;
+    long startTime, loopTime;
+    long DELAY = 33;
     SharedPreferences pref2;
 
     int potato, xpotato, powerup;
@@ -36,9 +36,6 @@ public class GameThread extends Thread {
         isRunning = true;
         this.potato = potato;
         this.xpotato = xpotato;
-//        pref2 = pref;
-
-//        powerup = pref2.getInt("powerup", 0);
         this.powerup = powerup;
         boolean flag = false;
         if(powerup == 1)
@@ -55,14 +52,12 @@ public class GameThread extends Thread {
         }
 
         if(powerup != 3){
-//            ArrayList list2 = new ArrayList();
             while(list.size() != this.xpotato + this.potato){
                 Flying f  = new Flying(r.nextInt(AppConstants.SCREEN_WIDTH / 3 * 2), r.nextInt(AppConstants.SCREEN_WIDTH / 3 * 2),
                         r.nextInt(4500), flag, false);
                 if(!list.contains(f))
                     list.add(f);
             }
-//            list.addAll(list2);
         }
 
         Collections.shuffle(list);
@@ -70,7 +65,6 @@ public class GameThread extends Thread {
 
     @Override
     public void run() {
-        // Looping until the boolean is false
         final Timer t = new Timer();
         TimerTask tt = new TimerTask() {
             @Override
@@ -86,14 +80,10 @@ public class GameThread extends Thread {
         while(isRunning){
             startTime = SystemClock.uptimeMillis();
 
-            // This is where we draw things into the canvas
             Canvas canvas = surfaceHolder.lockCanvas(null);
 
             if(canvas != null){
                 synchronized (surfaceHolder) {
-//                    AppConstants.getGameEngine().updateAndDrawBackgroundImage(canvas);
-//                    AppConstants.getGameEngine().updateAndDrawBird(canvas);
-//                    AppConstants.getGameEngine().updateAndDrawTubes(canvas);
                     drawBack(canvas);
 
                     for(int i = 0; i < list.size(); i++)
@@ -103,9 +93,7 @@ public class GameThread extends Thread {
                 }
             }
 
-            //loop time
             loopTime = SystemClock.uptimeMillis() - startTime;
-            // Pausing here to make sure we update the right amount per second
             if(loopTime < DELAY){
                 try{
                     Thread.sleep(DELAY - loopTime);
@@ -116,12 +104,10 @@ public class GameThread extends Thread {
         }
     }
 
-    // Return whether the thread is running
     public boolean isRunning(){
         return isRunning;
     }
 
-    // Sets the thread state, false = stopped, true = running
     public void setIsRunning(boolean state){
         isRunning = state;
     }
@@ -151,17 +137,11 @@ public class GameThread extends Thread {
             int newHeight = AppConstants.SCREEN_WIDTH / 3;
             Bitmap scaled = Bitmap.createScaledBitmap(thing, newWidth, newHeight, true);
 
-//            Matrix matrix = new Matrix();
-//            float angle = (float)Math.toDegrees(Math.atan2(f.getFinalX()-f.getInitX(), -f.getCurrY()));
-//            matrix.postRotate(angle);
-
             f.setInitX(f.getInitX() + (f.getFinalX() - f.getInitX())/5);
             f.setCurrY(f.getCurrY() - f.getVelocity());
 
-//            thing = Bitmap.createBitmap(scaled, 0,0, newWidth, newHeight, matrix, true);
             canvas.drawBitmap(scaled,f.getInitX(), f.getCurrY(),null);
         }
 
     }
 }
-
