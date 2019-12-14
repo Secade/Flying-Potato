@@ -27,12 +27,12 @@ public class Users {
         this.id = use.getId();
         this.name = use.getName();
         this.password = use.getPassword();
-        goldMulti = use.getGoldMulti();
-        lowSpeed = use.getLowSpeed();
-        lessObs = use.getLessObs();
-        cash = use.getCash();
-        highscore = use.getHighscore();
-        highestLevel = use.getHighestLevel();
+        this.goldMulti = use.getGoldMulti();
+        this.lowSpeed = use.getLowSpeed();
+        this.lessObs = use.getLessObs();
+        this.cash = use.getCash();
+        this.highscore = use.getHighscore();
+        this.highestLevel = use.getHighestLevel();
     }
 
     public Users(){

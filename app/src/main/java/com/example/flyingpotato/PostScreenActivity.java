@@ -25,7 +25,7 @@ public class PostScreenActivity extends AppCompatActivity {
     Button play;
     LinearLayout thingo;
     Users user, currUser;
-    ArrayList<Users> users;
+    ArrayList<Users> users = new ArrayList<>();
     DatabaseReference database;
 
     SharedPreferences pref, pref2;
@@ -56,38 +56,10 @@ public class PostScreenActivity extends AppCompatActivity {
 
         database = FirebaseDatabase.getInstance().getReference("Users");
 
-        if(!result){
-            thingo.removeView(play);
-            congrats.setText("Game Over!");
-        }
-
-        if(!pref.contains("username")){
-            gold.setText("");
-        } else {
-            if(pref2.getInt("powerup", 0) != 2){
-                gold.setText("You Earned 20 Gold!");
-                currUser.setCash(currUser.getCash()+20);
-                database.child(currUser.getId()).setValue(currUser);
-            } else {
-                gold.setText("You Earned 50 Gold!");
-                currUser.setCash(currUser.getCash()+50);
-                database.child(currUser.getId()).setValue(currUser);
-            }
-
-            if(Integer.parseInt(score.getText().toString().trim()) > currUser.getHighscore()){
-                currUser.setHighscore(Integer.parseInt(score.getText().toString().trim()));
-                database.child(currUser.getId()).setValue(currUser);
-            }
-        }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        database.addValueEventListener(new ValueEventListener() {
+        database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                System.out.println("BOI");
                 for (DataSnapshot data: dataSnapshot.getChildren()) {
                     user = data.getValue(Users.class);
                     users.add(user);
@@ -98,6 +70,31 @@ public class PostScreenActivity extends AppCompatActivity {
                         currUser = new Users(user);
                     }
                 }
+
+                if(!result){
+                    thingo.removeView(play);
+                    congrats.setText("Game Over!");
+                }
+
+                if(!pref.contains("username")){
+                    gold.setText("");
+                } else {
+                    if(pref2.getInt("powerup", 0) != 2){
+                        gold.setText("You Earned 20 Gold!");
+                        currUser.setCash(currUser.getCash()+20);
+                        database.child(currUser.getId()).setValue(currUser);
+                    } else {
+                        gold.setText("You Earned 50 Gold!");
+                        currUser.setCash(currUser.getCash()+50);
+                        database.child(currUser.getId()).setValue(currUser);
+                    }
+
+                    if(Integer.parseInt(score.getText().toString().trim()) > currUser.getHighscore()){
+                        currUser.setHighscore(Integer.parseInt(score.getText().toString().trim()));
+                        database.child(currUser.getId()).setValue(currUser);
+                    }
+                }
+
             }
 
             @Override
@@ -105,6 +102,15 @@ public class PostScreenActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
     }
 
     public void playagain(View view){
