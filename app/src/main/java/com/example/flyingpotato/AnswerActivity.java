@@ -41,7 +41,7 @@ public class AnswerActivity extends AppCompatActivity {
             finish();
         } else
         {
-            Toast.makeText(this. "No answer provided!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No answer provided!", Toast.LENGTH_SHORT).show();
         }
     }
 }

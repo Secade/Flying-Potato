@@ -44,6 +44,7 @@ public class PostScreenActivity extends AppCompatActivity {
 
         if(!result){
             thingo.removeView(play);
+            congrats.setText("Game Over!");
         }
 
         if(!pref.contains("username")){
