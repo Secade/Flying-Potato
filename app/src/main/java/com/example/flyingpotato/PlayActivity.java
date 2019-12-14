@@ -13,6 +13,7 @@ public class PlayActivity extends AppCompatActivity {
 
     GameView gameView;
     SharedPreferences pref2;
+    int powerup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,9 @@ public class PlayActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         this.getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         pref2 = getSharedPreferences("game_details", MODE_PRIVATE);
+        powerup = pref2.getInt("powerup", 0);
         AppConstants.gameActivityContext = this;
-        gameView = new GameView(this, pref2);
+        gameView = new GameView(this, powerup);
         setContentView(gameView);
     }
 

@@ -105,6 +105,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/thingo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1.25"
@@ -118,7 +119,7 @@
                 android:background="@drawable/buttonbg"
                 android:fontFamily="@font/lemon"
                 android:onClick="playagain"
-                android:text="PLAY AGAIN"
+                android:text="PLAY NEXT LEVEL"
                 android:textColor="#2E7D32"
                 android:textSize="20dp" />
 

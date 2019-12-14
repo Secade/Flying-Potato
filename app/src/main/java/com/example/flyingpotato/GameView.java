@@ -11,22 +11,23 @@ import java.util.Random;
 public class GameView extends SurfaceView implements SurfaceHolder.Callback{
 
     GameThread gameThread;
-    int potato, xpotato;
-    SharedPreferences pref;
+    int potato, xpotato, powerup;
+//    SharedPreferences pref;
 
-    public GameView(Context context, SharedPreferences pref) {
+    public GameView(Context context, int powerup) {
         super(context);
-        initView();
         Random r = new Random();
-        potato = r.nextInt(10) + 1;
-        xpotato = r.nextInt(20) + 5;
-        this.pref = pref;
+        potato = r.nextInt(5) + 1;
+        xpotato = r.nextInt(5) + 1;
+//        this.pref = pref;
+        this.powerup = powerup;
+        initView();
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         if(!gameThread.isRunning()){
-            gameThread = new GameThread(holder, this, potato, xpotato, pref);
+            gameThread = new GameThread(holder, this, potato, xpotato, powerup);
             gameThread.start();
         }else{
             gameThread.start();
@@ -56,7 +57,7 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback{
         SurfaceHolder holder = getHolder();
         holder.addCallback(this);
         setFocusable(true);
-        gameThread = new GameThread(holder, this, potato, xpotato, pref);
+        gameThread = new GameThread(holder, this, potato, xpotato, powerup);
     }
 
 //    @Override
