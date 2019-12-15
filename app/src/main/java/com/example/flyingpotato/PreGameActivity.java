@@ -34,8 +34,8 @@ public class PreGameActivity extends AppCompatActivity {
     SharedPreferences pref, pref2;
     LinearLayout thingie;
     Spinner spinner;
-    private List<Users> users;
-    private Users user;
+    private List<Users> users = new ArrayList<>();
+    private Users user, currUser;
     private DatabaseReference database;
     private int selectedPotion;
     private String key;
@@ -49,7 +49,6 @@ public class PreGameActivity extends AppCompatActivity {
 
         pref = getSharedPreferences("user_details", MODE_PRIVATE);
         pref2 = getSharedPreferences("game_details", MODE_PRIVATE);
-        users = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance().getReference("Users");
 
@@ -89,6 +88,7 @@ public class PreGameActivity extends AppCompatActivity {
                 }
                 for(Users user: users){
                     if(user.getName().compareTo(pref.getString("username", "")) == 0){
+                        currUser=new Users(user);
                         List<String> list = new ArrayList<String>();
                         list.add("No Power Up");
                         if (user.getLowSpeed()>0)
@@ -142,19 +142,22 @@ public class PreGameActivity extends AppCompatActivity {
     }
 
     public void play(View view){
-        if(spinner.getSelectedItemPosition() == 1){
-            user.setLowSpeed(user.getLowSpeed()-1);
-            database.child(user.getId()).setValue(user);
+        if(selectedPotion == 1){
+            System.out.println("SLOW MO USED");
+            currUser.setLowSpeed(currUser.getLowSpeed()-1);
+            database.child(currUser.getId()).setValue(currUser);
         }else if(selectedPotion ==2){
-            user.setGoldMulti(user.getGoldMulti()-1);
-            database.child(user.getId()).setValue(user);
+            System.out.println("GOLD MULTI USED");
+            currUser.setGoldMulti(currUser.getGoldMulti()-1);
+            database.child(currUser.getId()).setValue(currUser);
         }else if(selectedPotion==3){
-            user.setLessObs(user.getLessObs()-1);
-            database.child(user.getId()).setValue(user);
+            System.out.println("LESS OBS USED");
+            currUser.setLessObs(currUser.getLessObs()-1);
+            database.child(currUser.getId()).setValue(currUser);
         }
 
         SharedPreferences.Editor editor = pref2.edit();
-        editor.putInt("powerup", spinner.getSelectedItemPosition());
+        editor.putInt("powerup", selectedPotion);
         editor.putInt("level", pref2.getInt("level", 0) + 1);
         editor.commit();
 
