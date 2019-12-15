@@ -73,6 +73,7 @@ public class GameThread extends Thread {
                 intent.putExtra("potato", potato);
                 surfaceView.getContext().startActivity(intent);
                 ((Activity) surfaceView.getContext()).finish();
+                isRunning = false;
                 t.cancel();
             }
         };
